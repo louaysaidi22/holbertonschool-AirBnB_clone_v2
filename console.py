@@ -138,8 +138,6 @@ class HBNBCommand(cmd.Cmd):
                     value = str2
                 elif value.find('.') != -1:
                     value = float(value)
-                else:
-                    value = int(value)
             setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
