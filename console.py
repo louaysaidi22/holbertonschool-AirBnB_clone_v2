@@ -125,19 +125,19 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[arg[0]]()
         key =""
         value=""
-        for str in arg:
-            str1 = str.split('=')
-            if len(str1) == 2:
+        for str in arg[1:]:
+            str = str.split('=')
+            if len(str) == 2:
                 key = str[0]
                 value = str[1]
                 if value[0] == '"' and value[len(value) - 1] == '"':
-                    str2 = value
-                    str2.pop(0)
-                    str2.pop(len(value))
-                    str2 = str2.replace('_', ' ')
-                    value = str2
+                    str = value
+                    str = str.replace('_', ' ')
+                    value = str[1:-1]
                 elif value.find('.') != -1:
                     value = float(value)
+                else:
+                    value = int(value)
             setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
